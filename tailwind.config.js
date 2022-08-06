@@ -6,7 +6,12 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'eb_gray': '#2F2E41',
+        eb_gray:{
+          '100': '#ECECEC',
+          '200': '#F5F5F7',
+          '400': '#D3D3D3',
+          '500': '#2F2E41',
+        },
         'eb_pink': '#D16FFF',
         'eb_green': '#7DC143;',
       },
