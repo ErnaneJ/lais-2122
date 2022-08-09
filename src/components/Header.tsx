@@ -15,8 +15,8 @@ export const Header = () => {
   const [showHeader, setShowHeader] = useState(false);
   
   return <>
-    <header className="bg-white fixed top-0 text-eb_gray-500 body-font drop-shadow-md w-full">
-      <div className={`transition ease-in-out duration-300 container mx-auto p-2 flex flex-col xl:flex-row items-center ${showHeader ? "h-auto" : "h-20" } xl:h-auto overflow-hidden`}>
+    <header className="bg-white fixed top-0 text-eb_gray-500 body-font drop-shadow-md w-full z-50">
+      <div className={`transition ease-in-out duration-300 container mx-auto p-2 flex flex-col xl:flex-row items-center ${showHeader ? "h-auto" : "h-20 md:h-16" } xl:h-auto overflow-hidden`}>
         <div className="flex w-full items-center justify-between">
           <a href="/" className="flex title-font font-medium items-center text-white mb-5 md:mb-4 md:mb-0">
             <img src={headerLogo} className="xl:mt-3" alt="Imagem de logo da plataforma Elder Book"/>

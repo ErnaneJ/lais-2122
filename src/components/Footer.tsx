@@ -16,7 +16,7 @@ export const Footer = () => {
     <div className="container pt-12 sm:pt-24 pb-21 mx-auto flex items-start justify-end flex-col gap-5 sm:gap-0 sm:flex-row">
       <div className="w-full flex items-start justify-end">
         <div className="w-64 flex-shrink-0 md:mx-0 mx-auto text-center md:text-left">
-          <a className="flex title-font mb-3 font-medium items-center justify-center text-white">
+          <a href="https://lais.huol.ufrn.br/" className="flex title-font mb-3 font-medium items-center justify-center text-white">
             <img src={laisLogo} className="h-8" alt="Imagem de logo do Laboratório de Inovação Tecnológica em Saúde - LAIS"/>
           </a>
           <p className="mt-2 text-sm text-center text-gray-400">Laboratório de Inovação <br/> Tecnológica em Saúde.</p>
@@ -26,11 +26,11 @@ export const Footer = () => {
         <div className="flex flex-col items-center justify-center">
           <h2 className="title-font font-medium text-white tracking-widest text-xl mb-3">Links Úteis</h2>
           <nav className="list-none">
-            <li className="flex flex-col items-center justify-center text-gray-400 hover:underline cursor-pointer text-sm mb-2"> <a href="#">Início</a> </li>
-            <li className="flex flex-col items-center justify-center text-gray-400 hover:underline cursor-pointer text-sm mb-2"> <a href="#">Sobre Nós</a> </li>
-            <li className="flex flex-col items-center justify-center text-gray-400 hover:underline cursor-pointer text-sm mb-2"> <a href="#">Módulos</a> </li>
-            <li className="flex flex-col items-center justify-center text-gray-400 hover:underline cursor-pointer text-sm mb-2"> <a href="#">Parceiros</a> </li>
-            <li className="flex flex-col items-center justify-center text-gray-400 hover:underline cursor-pointer text-sm mb-2"> <a href="#">Transparência</a> </li>
+            <li className="flex flex-col items-center justify-center text-gray-400 hover:underline cursor-pointer text-sm mb-2"> <a href="/">Início</a> </li>
+            <li className="flex flex-col items-center justify-center text-gray-400 hover:underline cursor-pointer text-sm mb-2"> <a href="/#">Sobre Nós</a> </li>
+            <li className="flex flex-col items-center justify-center text-gray-400 hover:underline cursor-pointer text-sm mb-2"> <a href="/#">Módulos</a> </li>
+            <li className="flex flex-col items-center justify-center text-gray-400 hover:underline cursor-pointer text-sm mb-2"> <a href="/#">Parceiros</a> </li>
+            <li className="flex flex-col items-center justify-center text-gray-400 hover:underline cursor-pointer text-sm mb-2"> <a href="/#">Transparência</a> </li>
           </nav>
         </div>
       </div>
