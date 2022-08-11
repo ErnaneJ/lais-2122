@@ -3,8 +3,8 @@ import { Parceiro } from "../types/parceiro";
 
 const endpoint  = "http://localhost:3004";
 
-export const getCurses = async ():Promise<Curso[]> => {
-  const response = await fetch(`${endpoint}/cursos`);
+export const getCurses = async (path: string):Promise<Curso[]> => {
+  const response = await fetch(`${endpoint}${path}`);
   const data = await response.json();
 
   return data as Curso[];

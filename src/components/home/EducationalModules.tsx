@@ -2,37 +2,17 @@ import { useEffect, useState } from "react";
 import { Curso } from '../../types/curso';
 import { getCurses } from "../../services/api";
 
-const orderBybestRatedCourses = (curses:Curso[]):Curso[] => {
-  return curses.sort((curseA, curseB) => {
-    return parseFloat(curseB.avaliacao) - parseFloat(curseA.avaliacao);
-  });
-}
-
-const orderBymostPopularCourses = (curses:Curso[]):Curso[] => {
-  return curses.sort((curseA, curseB) => {
-    return curseB.matriculados - curseA.matriculados;
-  });
-}
-
-const orderBylatestCourses = (curses:Curso[]):Curso[] => {
-  return curses.sort((curseA, curseB) => {
-    const dataCurseA:string = curseA.criado_em.split('/').reverse().join('');
-    const dataCurseB:string = curseB.criado_em.split('/').reverse().join('');
-    return (dataCurseB > dataCurseA ? 1 : dataCurseB < dataCurseA ? -1 : 0);
-  });
-}
-
-const orderCursesBy = [ orderBymostPopularCourses, orderBybestRatedCourses, orderBylatestCourses];
+const orderCursesBy = ["?_sort=matriculados&_order=desc&_limit=3", "?_sort=avaliacao&_order=desc&_limit=3", "?_sort=criado_em&_order=desc&_limit=3"];
 
 export const EducationalModules = () => {
   const [activeTabCurse, setActiveTabCurse] = useState(0);
   const [allCurses, setAllCurses] = useState<Curso[]>([]);
 
   useEffect(() => {
-    const fetchCurses = async () => setAllCurses(await getCurses());
+    const fetchCurses = async () => setAllCurses(await getCurses(`/cursos${orderCursesBy[activeTabCurse]}`));
 
     fetchCurses();
-  }, []);
+  }, [activeTabCurse]);
 
   return (
     <section className="text-gray-600 body-font">
@@ -55,7 +35,7 @@ export const EducationalModules = () => {
             </div>
             <div className="text-gray-600 body-font max-w-screen">
               <div className="container px-5 flex flex-col gap-5">
-                {orderCursesBy[activeTabCurse](allCurses).slice(0, 3).map((curse:Curso) => (
+              {allCurses.map((curse:Curso) => (
                   <div key={curse.id} className="flex items-center justify-center w-full bg-eb_gray-200 p-4 xl:flex-row rounded-2xl flex-col">
                     <img src={curse.capa} className="w-full md:w-[120px] h-[120px] rounded-2xl object-cover object-center xl:mr-5" alt={`Imagem de capa do curso ${curse.titulo}`}/>
                     <div className="flex-grow xl:text-left text-center mt-6 xl:mt-0 w-full xl:w-1/2 mb-5 xl:mb-0">

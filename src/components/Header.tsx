@@ -1,21 +1,23 @@
 import { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import headerLogo from '../assets/images/header_logo.svg';
 
-const links = [
-  {name: "Inicio", path: "/", status: true},
-  {name: "Sobre Nós", path: "#sobre_nos", status: false},
-  {name: "Cursos", path: "/curso/modulos", status: false},
-  {name: "Parceiros", path: "/parceiros", status: false},
-  {name: "Transparência", path: "/transparencia", status: false},
-  {name: "Contato", path: "#contato", status: false},
-];
-
 export const Header = () => {
+  const location = useLocation();
 
   const [showHeader, setShowHeader] = useState(false);
+
+  const links = [
+    {name: "Inicio", path: "/", status: location.pathname == "/"},
+    {name: "Sobre Nós", path: "#sobre_nos", status: location.pathname.includes("#sobre_nos")},
+    {name: "Cursos", path: "/curso/modulos", status: location.pathname.includes("/curso/modulos")},
+    {name: "Parceiros", path: "/parceiros", status: location.pathname.includes("/parceiros")},
+    {name: "Transparência", path: "/transparencia", status: location.pathname.includes("/transparencia")},
+    {name: "Contato", path: "#contato", status: location.pathname.includes("#contato")},
+  ];
   
   return <>
-    <header className="bg-white fixed top-0 text-eb_gray-500 body-font drop-shadow-md w-full z-50">
+    <header className="bg-white fixed top-0 text-eb_gray-500 body-font drop-shadow-md w-full max-w-screen z-50">
       <div className={`transition ease-in-out duration-300 container mx-auto p-2 flex flex-col xl:flex-row items-center ${showHeader ? "h-auto" : "h-20 md:h-16" } xl:h-auto overflow-hidden`}>
         <div className="flex w-full items-center justify-between">
           <a href="/" className="flex title-font font-medium items-center text-white mb-5 md:mb-4 md:mb-0">

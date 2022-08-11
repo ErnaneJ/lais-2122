@@ -8,7 +8,8 @@ export const Main = () => {
   return (         
     <Routes>
       <Route path='/' element={<Home/>}/>
-      <Route path='/modules' element={<Modulos/>}/>
+      <Route path='/cursos/modulos/' element={<Modulos/>}/>
+      <Route path='/cursos/modulos/:page' element={<Modulos/>}/>
       <Route path='/parceiros/' element={<Parceiros/>} />
       <Route path='/parceiros/:page' element={<Parceiros/>} />
     </Routes>
