@@ -2,20 +2,38 @@ import { useEffect, useState } from "react";
 import { Breadcrumb } from "../components/breadcrumb";
 import { getTransparency } from "../services/api";
 import { Transparencia as transparenciaType } from "../types/transparencia";
-import { applyDonutChart } from "../utils/helpers";
-
 
 export const Transparencia = () => {
   const [transparencia, setTransparencia] = useState<transparenciaType>();
+  const [rangeDataMap, setRangeDataMap] = useState<any[]>([]);
+  const [rangeDataDonut, setRangeDataDonut] = useState<any[]>([]);
 
   useEffect(() => {
     const fetchTransparencyData = async () => {
       const transparencyData = await getTransparency(`/transparecia`);
       setTransparencia(transparencyData);
+
+      const maxNumber = Math.max(...transparencyData.usuarios_por_estado.map(data => data.usuarios_totais)); 
+      setRangeDataMap(
+        [
+          {label: `Menor ou igual à ${Intl.NumberFormat('pt-BR').format(parseInt((maxNumber / 4) as any))} usuários.` , color: '#FFFFFF'},
+          {label: `Entre ${Intl.NumberFormat('pt-BR').format(parseInt((maxNumber / 4)  as any ))} e ${Intl.NumberFormat('pt-BR').format(parseInt(2 * (maxNumber / 4)  as any ))} usuários.`, color: '#7DC143'},
+          {label: `Entre ${Intl.NumberFormat('pt-BR').format(parseInt(2 * (maxNumber / 4)  as any ))} e ${Intl.NumberFormat('pt-BR').format(parseInt(3 * (maxNumber / 4)  as any ))} usuários.`, color: '#D16FFF'},
+          {label: `Maior ou igual à ${Intl.NumberFormat('pt-BR').format(parseInt(3 * (maxNumber / 4)  as any ))} usuários.`, color: '#2F2E41'}
+        ]
+      );
+
+      let colors = ['#FFFFFF', '#7DC143', '#D16FFF', '#2F2E41'];
+      setRangeDataDonut(transparencyData.usuarios_por_curso.map((data, index) => {
+        return {
+          label: data.curso,
+          value: data.usuarios,
+          color: colors[index]
+        }
+      }));
     };
 
     fetchTransparencyData();
-    
   }, []);
   
   if(transparencia === undefined) return <></>;
@@ -99,21 +117,36 @@ export const Transparencia = () => {
         </div>
       </section>
 
-      <section className="text-gray-600 body-font">
+      <section id="charts-transparency" className="text-gray-600 body-font">
         <div className="container px-5 py-3 mx-auto flex flex-wrap">
           <div className="p-4 w-full lg:w-1/2">
-            <div className="flex flex-col rounded-lg shadow-md bg-eb_gray-200 p-8">
+            <div className="flex h-full flex-col rounded-lg shadow-md bg-eb_gray-200 p-8">
               <h2 className="text-eb_green text-center text-3xl title-font font-medium mb-8">Usuários por curso</h2>
               <input type="hidden" value={JSON.stringify(transparencia.usuarios_por_curso)} id="data-donut-chart"/>
-              <div className="w-full h-full" id="donut-chart" style={{ height: "400px"}}></div>
+              <div className="w-full h-full" id="donut-chart" style={{ minHeight: "400px"}}></div>
+              <div className="flex flex-col items-start justify-center text-center">
+                {rangeDataDonut.map(data => (
+                  <span key={Math.random()} className="text-sm font-semibold text-gray-600 flex items-center justify-start gap-2">
+                    <span className="block rounded-full h-3 w-3" style={{border: "1px solid #9a9a9a", backgroundColor: data.color}}></span> {data.label}.
+                    <i>({Intl.NumberFormat('pt-BR').format(data.value)} usuários)</i>
+                  </span>
+                ))}
+              </div>
             </div>
           </div>
 
-          <div className="p-4 w-full lg:w-1/2">
-            <div className="flex flex-col rounded-lg shadow-md bg-eb_gray-200 p-8">
+          <div className="p-4 h-full w-full lg:w-1/2">
+            <div className="flex h-full flex-col rounded-lg shadow-md bg-eb_gray-200 p-8">
               <h2 className="text-eb_green text-center text-3xl title-font font-medium mb-8">Usuários por estado</h2>
-              <input type="hidden" value={JSON.stringify(transparencia.usuarios_por_curso)} id="data-donut-chart"/>
+              <input type="hidden" value={JSON.stringify(transparencia.usuarios_por_estado)} id="data-map-chart"/>
               <div className="w-full h-full" id="map-chart" style={{ height: "400px"}}></div>
+              <div className="flex flex-col items-start justify-center text-center">
+                {rangeDataMap.map(data => (
+                  <span key={Math.random()} className="text-sm font-semibold text-gray-600 flex items-center justify-start gap-2">
+                    <span className="block rounded-full h-3 w-3" style={{border: "1px solid #9a9a9a", backgroundColor: data.color}}></span> {data.label}
+                  </span>
+                ))}
+              </div>
             </div>
           </div>
         </div>
