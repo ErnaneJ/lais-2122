@@ -1,1 +1,4 @@
-CI= npm run build
+[build]
+  base = "/buld"
+  publish = "/build"
+  command = "npm run build"
