@@ -2,7 +2,8 @@ import { Curso } from "../types/curso";
 import { Parceiro } from "../types/parceiro";
 import { Transparencia } from "../types/transparencia";
 
-const endpoint  = "http://localhost:3004";
+// const endpoint  = "http://localhost:3004";
+const endpoint  = "https://lais-api.herokuapp.com";
 
 export const getCurses = async (path: string):Promise<Curso[]> => {
   const response = await fetch(`${endpoint}${path}`);
