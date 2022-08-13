@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
   <head>
     <meta charset="utf-8" />
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
@@ -9,10 +9,113 @@
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo.png" />
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
 
+    <script src="https://cdn.anychart.com/releases/v8/js/anychart-base.min.js"></script>
+    <script src="https://cdn.anychart.com/releases/v8/js/anychart-ui.min.js"></script>
+    <script src="https://cdn.anychart.com/releases/v8/js/anychart-exports.min.js"></script>
+    <link href="https://cdn.anychart.com/releases/v8/css/anychart-ui.min.css" type="text/css" rel="stylesheet">
+    <link href="https://cdn.anychart.com/releases/v8/fonts/css/anychart-font.min.css" type="text/css" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.3.15/proj4.js"></script>
+    <script src="https://cdn.anychart.com/releases/v8/js/anychart-base.min.js"></script>
+    <script src="https://cdn.anychart.com/releases/v8/js/anychart-map.min.js"></script>
+    <script src="https://cdn.anychart.com/releases/v8/js/anychart-exports.min.js"></script>
+    <script src="https://cdn.anychart.com/releases/v8/js/anychart-ui.min.js"></script>
+    <script src="https://cdn.anychart.com/geodata/2.2.0/countries/brazil/brazil.js"></script>
+
     <title>Elder Book</title>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <section id="root"></section>
+
+
+    <script>
+      showResult()
+      function showResult() {
+        const target = document.querySelector('#root');
+        const observer = new MutationObserver(function() {
+        if (document.getElementById('donut-chart')) {
+          observer.disconnect();
+          applyChartDonut();
+          applyMapChart();
+        }
+        });  
+        const config = { childList: true };
+        observer.observe(target, config);
+      }
+
+      function applyChartDonut(){
+        const dataDonutChart = JSON.parse(document.getElementById('data-donut-chart').value)
+
+        anychart.onDocumentReady(() => {
+          let chart = anychart.pie(dataDonutChart.map(data => [data.curso, data.usuarios]));
+          chart.container('donut-chart');
+          chart.draw();
+        });
+      }
+
+      function applyMapChart(){
+        anychart.onDocumentReady(function() {
+          // create map
+          var map = anychart.map();
+
+          // create data set
+          var dataSet = anychart.data.set(
+              [{"id":"BR.GO","value":0},
+              {"id":"BR.SP","value":1},
+              {"id":"BR.PE","value":2},
+              {"id":"BR.AC","value":3},
+              {"id":"BR.AM","value":4},
+              {"id":"BR.MA","value":5},
+              {"id":"BR.PA","value":6},
+              {"id":"BR.RO","value":7},
+              {"id":"BR.TO","value":8},
+              {"id":"BR.DF","value":9},
+              {"id":"BR.MS","value":10},
+              {"id":"BR.MG","value":11},
+              {"id":"BR.MT","value":12},
+              {"id":"BR.RS","value":13},
+              {"id":"BR.PR","value":14},
+              {"id":"BR.SC","value":15},
+              {"id":"BR.CE","value":16},
+              {"id":"BR.PI","value":17},
+              {"id":"BR.AL","value":18},
+              {"id":"BR.BA","value":19},
+              {"id":"BR.ES","value":20},
+              {"id":"BR.PB","value":21},
+              {"id":"BR.RJ","value":22},
+              {"id":"BR.RN","value":null},
+              {"id":"BR.SE","value":24},
+              {"id":"BR.RR","value":25},
+              {"id":"BR.AP","value":26}]
+          );
+
+          var densityData = dataSet.mapAs({ size: 'value' });
+          var series = map.bubble(densityData);
+          map.maxBubbleSize('7%').minBubbleSize('0.3%');
+          series.labels(false).selectionMode('none');
+
+          // create choropleth series
+          series = map.choropleth(dataSet);
+
+          // set geoIdField to 'id', this field contains in geo data meta properties
+          series.geoIdField('id');
+
+          // set map color settings
+          series.colorScale(anychart.scales.linearColor('#deebf7', '#3182bd'));
+          series.hovered().fill('#addd8e');
+
+          // set geo data, you can find this map in our geo maps collection
+          // https://cdn.anychart.com/#maps-collection
+          map.geoData(anychart.maps['brazil']);
+
+          //set map container id (div)
+          map.container('map-chart');
+
+          //initiate map drawing
+          map.draw();
+        });
+      }
+    </script>
   </body>
 </html>

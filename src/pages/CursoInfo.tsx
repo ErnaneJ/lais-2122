@@ -4,7 +4,6 @@ import { Breadcrumb } from "../components/breadcrumb";
 import { getCurses } from "../services/api";
 import { Curso } from "../types/curso";
 
-
 export const CursoInfo = () => {
   const [currentCurse, setCurrentCurse] = useState<Curso>();
   const [titleCurseQuery] = useState<string>(useParams<{modulo: string }>().modulo || "");
