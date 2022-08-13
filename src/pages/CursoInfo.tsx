@@ -18,7 +18,7 @@ export const CursoInfo = () => {
     };
    
     fetchModuleByTitle();
-  }, []);
+  }, [titleCurseQuery]);
   
   if(currentCurse === undefined) return <></>;
 
