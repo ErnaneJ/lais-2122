@@ -8,9 +8,9 @@ export const Header = () => {
   const [showHeader, setShowHeader] = useState(false);
 
   const links = [
-    {name: "Inicio", path: "/", status: location.pathname == "/"},
+    {name: "Inicio", path: "/", status: location.pathname === "/"},
     {name: "Sobre Nós", path: "#sobre_nos", status: location.pathname.includes("#sobre_nos")},
-    {name: "Cursos", path: "/curso/modulos", status: location.pathname.includes("/curso/modulos")},
+    {name: "Cursos", path: "/cursos/modulos", status: location.pathname.includes("/curso")},
     {name: "Parceiros", path: "/parceiros", status: location.pathname.includes("/parceiros")},
     {name: "Transparência", path: "/transparencia", status: location.pathname.includes("/transparencia")},
     {name: "Contato", path: "#contato", status: location.pathname.includes("#contato")},

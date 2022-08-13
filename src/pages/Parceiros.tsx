@@ -27,7 +27,7 @@ export const Parceiros = () => {
   }, [page, perPage, navigate]);
 
   return <main className="pt-24">
-    <Breadcrumb path={["Início", "Parceiros"]}/>
+    <Breadcrumb key={Math.random()} path={["Início", "Parceiros"]}/>
 
     <section className="text-gray-600 body-font">
       <div className="container px-2 md:px-5 pb-10 mx-auto">

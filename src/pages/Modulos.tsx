@@ -44,7 +44,7 @@ export const Modulos = () => {
   }, [page, perPage, selectedCategory, navigate]);
 
   return <main className="pt-24">
-    <Breadcrumb path={["Início", "Cursos", "Módulos"]}/>
+    <Breadcrumb key={Math.random()} path={["Início", "Cursos", "Módulos"]}/>
 
     <section className="text-gray-600 body-font">
       <div className="container px-2 md:px-5 pb-10 mx-auto">
@@ -73,12 +73,11 @@ export const Modulos = () => {
                 <select 
                   id="categories" 
                   onChange={e => setSelectedCategory(e.target.value) } 
-                  value={selectedCategory} 
+                  value={selectedCategory}
                   className="block py-2.5 px-0 w-full text-sm text-gray-600 bg-transparent border-0 border-b-2 border-eb_pink focus:outline-none 
                     appearance-none"
                   >
-                    <option selected>Selecione uma categoria</option>
-                    {categories.map((category: string) => (
+                    {categories.map((category: string, index: number) => (
                       <option key={category} value={category}>{category}</option>
                     ))}
 

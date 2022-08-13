@@ -1,4 +1,4 @@
 export type Credito = {
-  capa: String,
-  titulo: String,
+  capa: string,
+  titulo: string,
 }
