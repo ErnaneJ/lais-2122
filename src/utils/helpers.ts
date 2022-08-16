@@ -23,3 +23,8 @@ export const applyDonutChart = (container:string) => {
     chart.draw();
   });
 }
+
+export const sanitarizeString = (string: string): string => {
+  if(!string) return '';
+  return string.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+}

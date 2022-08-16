@@ -5,6 +5,10 @@ import { CursoInfo } from './pages/CursoInfo';
 import { Transparencia } from './pages/Transparencia';
 
 import { Parceiros } from './pages/Parceiros';
+import { Contato } from './pages/Contato';
+import { Cadastro } from './pages/Cadastro';
+import { Login } from './pages/Login';
+import { Search } from './pages/Search';
 
 export const Main = () => {
   return (         
@@ -16,6 +20,11 @@ export const Main = () => {
       <Route path='/parceiros/' element={<Parceiros/>} />
       <Route path='/parceiros/:page' element={<Parceiros/>} />
       <Route path='/transparencia/' element={<Transparencia/>} />
+
+      <Route path='/contato/' element={<Contato/>} />
+      <Route path='/cadastro/' element={<Cadastro/>} />
+      <Route path='/entrar/' element={<Login/>} />
+      <Route path='/buscar/:term' element={<Search/>} />
     </Routes>
   );
 }

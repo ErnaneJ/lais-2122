@@ -8,28 +8,28 @@ export const Parceiros = () => {
         <div className="text-gray-600 body-font">
           <div className="container px-5 py-10 mx-auto flex flex-wrap flex-col bg-eb_gray-100 rounded-lg">
             <div className="flex flex-wrap -m-4">
-              <div className="lg:w-1/4 lg:mb-0 mb-6 p-4">
+              <div className="w-full lg:w-1/4 lg:mb-0 mb-6 p-4">
                 <div className="h-full text-center">
                   <h2 className="text-eb_gray-300 font-semibold text-2xl title-font tracking-wider">Governo do RN</h2>
                   <span className="inline-block h-1 w-10 rounded bg-eb_green"></span>
                   <p className="text-eb_gray-300">Governo do Estado do Rio Grande do Norte.</p>
                 </div>
               </div>
-              <div className="lg:w-1/4 lg:mb-0 mb-6 p-4">
+              <div className="w-full lg:w-1/4 lg:mb-0 mb-6 p-4">
                 <div className="h-full text-center">
                   <h2 className="text-eb_gray-300 font-semibold text-2xl title-font tracking-wider">SESAP</h2>
                   <span className="inline-block h-1 w-10 rounded bg-eb_green"></span>
                   <p className="text-eb_gray-300">Secretaria de Saúde Pública do Estado do Rio Grande do Norte</p>
                 </div>
               </div>
-              <div className="lg:w-1/4 lg:mb-0 p-4">
+              <div className="w-full lg:w-1/4 lg:mb-0 p-4">
                 <div className="h-full text-center">
                   <h2 className="text-eb_gray-300 font-semibold text-2xl title-font tracking-wider">UFRN</h2>
                   <span className="inline-block h-1 w-10 rounded bg-eb_green"></span>
                   <p className="text-eb_gray-300">Universidade Federal do Rio Grande do Norte</p>
                 </div>
               </div>
-              <div className="lg:w-1/4 lg:mb-0 p-4">
+              <div className="w-full lg:w-1/4 lg:mb-0 p-4">
                 <div className="h-full text-center">
                   <h2 className="text-eb_gray-300 font-semibold text-2xl title-font tracking-wider">HUOL</h2>
                   <span className="inline-block h-1 w-10 rounded bg-eb_green"></span>

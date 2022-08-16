@@ -20,11 +20,6 @@ function donutChart(dataId, containerId){
     var legend = chart.legend();
     legend.enabled(false);
 
-    // legend.positionMode("outside");
-    // legend.position("bottom");
-    // legend.align("left");
-    // legend.itemsLayout("verticalExpandable");
-
     chart.container(containerId);
     chart.draw();
   });

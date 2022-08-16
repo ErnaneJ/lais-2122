@@ -6,6 +6,7 @@ import { Curso } from "../types/curso";
 import { getCurses } from "../services/api";
 import { NotFound } from "../components/NotFound";
 import { Loading } from "../components/Loading";
+import { Helmet } from "react-helmet";
 
 function getCategories(modules:Curso[]):string[]{
   let allCategories = modules.map((curso: Curso):string => curso.cateroria);
@@ -50,6 +51,9 @@ export const Modulos = () => {
   }
 
   return <main className="pt-24">
+    <Helmet>
+      <title>Elder Book - Módulos educacionais</title>
+    </Helmet>
     <div className="container mx-auto px-12">
       <Breadcrumb key={Math.random()} path={["Início", "Cursos", "Módulos"]}/>
     </div>

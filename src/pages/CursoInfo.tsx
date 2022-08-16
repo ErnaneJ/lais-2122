@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { Breadcrumb } from "../components/breadcrumb";
 import { getCurses } from "../services/api";
 import { Curso } from "../types/curso";
+import { SEOModules } from '../components/SEOModules';
 
 export const CursoInfo = () => {
   const [currentCurse, setCurrentCurse] = useState<Curso>();
@@ -24,6 +25,7 @@ export const CursoInfo = () => {
 
   return (
     <main>
+      <SEOModules curse={currentCurse} />
       <section className={`pt-24 text-gray-600 relative body-font bg-center bg-origin-border bg-center bg-no-repeat bg-cover -z-10`} style={{backgroundImage: `url("${bannerImage}")`}}>
         <div className="w-full absolute top-0 left-0 right-0 bottom-0 bg-eb_green mix-blend-multiply -z-10"></div>
         <div className="container px-5 mx-auto pb-12 flex flex-wrap items-center mix-blend-normal z-20">
@@ -39,8 +41,8 @@ export const CursoInfo = () => {
         <div className="container px-5 my-10 mx-auto">
           <div className="flex flex-col text-center w-full">
             <h2 className="sm:text-3xl text-2xl font-semibold title-font mb-8 text-eb_green">Informações Gerais do Curso</h2>
-            <div className="lg:w-2/3 mx-auto leading-relaxed text-base">
-              <div className="flex flex-col xl:flex-row items-center justify-end gap-8 w-full font-bold">
+            <div className="w-full mx-auto leading-relaxed text-base">
+              <div className="w-full flex flex-col sm:flex-row items-center justify-center gap-8 w-full font-bold">
                 <span className="flex gap-2">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                     <path d="M12.2471 0C5.85382 0 0.652954 5.20086 0.652954 11.5941C0.652954 17.9874 5.85382 23.1882 12.2471 23.1882C18.6403 23.1882 23.8412 17.9874 23.8412 11.5941C23.8412 5.20086 18.6403 0 12.2471 0ZM17.7611 17.5911C17.5727 17.7795 17.3253 17.8743 17.078 17.8743C16.8307 17.8743 16.5832 17.7795 16.395 17.5911L11.564 12.7603C11.3823 12.5797 11.281 12.3341 11.281 12.0773V5.79706C11.281 5.26278 11.7137 4.83094 12.2471 4.83094C12.7805 4.83094 13.2132 5.26278 13.2132 5.79706V11.6773L17.7611 16.225C18.1388 16.6029 18.1388 17.2134 17.7611 17.5911Z" fill="#7DC143"/>

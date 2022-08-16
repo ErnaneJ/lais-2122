@@ -22,7 +22,7 @@ export const EducationalModules = () => {
           <h1 className="xl:text-3xl text-2xl font-semibold text-center title-font mb-4 text-eb_green">Módulos Educacionais</h1>
         </div>
         <div className="text-gray-600 body-font">
-          <div className="container px-5 mx-auto flex flex-wrap flex-col">
+          <div className="container mx-auto flex flex-wrap flex-col">
             <div className="flex flex-wrap mb-5 justify-start max-w-screen">
               <button onClick={() => setActiveTabCurse(0)} className={`xl:px-6 py-3 w-1/3 xl:w-auto justify-center xl:justify-start border-b-2 title-font font-semibold inline-flex items-center leading-none ${activeTabCurse === 0 ? "border-eb_pink" : "border-transparent"} text-gray-900 tracking-wider rounded-t`}>
                 Mais populares
@@ -40,7 +40,7 @@ export const EducationalModules = () => {
               </div>
             ) : (
               <div className="text-gray-600 body-font max-w-screen">
-                <div className="container px-5 flex flex-col gap-5">
+                <div className="container flex flex-col gap-5">
                 {allCurses.map((curse:Curso) => (
                     <div key={curse.id} className="flex items-center justify-center w-full bg-eb_gray-200 p-4 xl:flex-row rounded-2xl flex-col">
                       <img src={curse.capa} className="w-full md:w-[120px] h-[120px] rounded-2xl object-cover object-center xl:mr-5" alt={`Imagem de capa do curso ${curse.titulo}`}/>
