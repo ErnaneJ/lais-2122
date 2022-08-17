@@ -75,10 +75,10 @@ export const CursoInfo = () => {
                   <span className="flex">
                     <div className="text-gray-300 text-3xl relative m-0 p-0">
                       <div className="text-eb_green p-0 absolute block top-0 left-0 overflow-hidden" style={{width: `${(parseFloat(currentCurse.avaliacao)/5) * 100}%`}}>
-                        <span className="inline-block">🟊🟊🟊🟊🟊</span>
+                        <span className="inline-block">&#x2605;&#x2605;&#x2605;&#x2605;&#x2605;</span>
                       </div>
                       <div className="p-0 block">
-                        <span className="inline-block">🟊🟊🟊🟊🟊</span>
+                        <span className="inline-block">&#x2605;&#x2605;&#x2605;&#x2605;&#x2605;</span>
                       </div>
                     </div>
                   </span>
