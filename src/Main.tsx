@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import { Home } from './pages/Home';
 import { Modulos } from './pages/Modulos';
 import { CursoInfo } from './pages/CursoInfo';
@@ -9,11 +9,13 @@ import { Contato } from './pages/Contato';
 import { Cadastro } from './pages/Cadastro';
 import { Login } from './pages/Login';
 import { Search } from './pages/Search';
+import { NotFound } from './pages/NotFound';
 
 export const Main = () => {
   return (         
     <Routes>
       <Route path='/' element={<Home/>}/>
+      <Route path='/cursos' element={<Navigate to="/cursos/modulos/"/>}/>
       <Route path='/cursos/modulos/' element={<Modulos/>}/>
       <Route path='/cursos/modulos/:page' element={<Modulos/>}/>
       <Route path='/cursos/modulo/:modulo' element={<CursoInfo/>}/>
@@ -25,6 +27,8 @@ export const Main = () => {
       <Route path='/cadastro/' element={<Cadastro/>} />
       <Route path='/entrar/' element={<Login/>} />
       <Route path='/buscar/:term' element={<Search/>} />
+
+      <Route path='*' element={<NotFound />} />
     </Routes>
   );
 }

@@ -56,7 +56,7 @@ export const Transparencia = () => {
       <section className="text-gray-600 body-font">
         <div className="container px-5 mx-auto flex flex-wrap">
           <div className="p-4 w-full">
-            <div className="flex flex-col rounded-lg shadow-md bg-eb_gray-200 p-8">
+            <div className="flex flex-col rounded-lg shadow-md bg-eb_gray-200 p-4 xl:p-8">
               <h2 className="text-eb_green text-center text-3xl title-font font-medium mb-8">Dados Gerais</h2>
 
               <div className="w-full flex flex-wrap items-center justify-center">
@@ -124,7 +124,7 @@ export const Transparencia = () => {
       <section id="charts-transparency" className="text-gray-600 body-font">
         <div className="container px-5 py-3 mx-auto flex flex-wrap">
           <div className="p-4 w-full lg:w-1/2">
-            <div className="flex h-full flex-col rounded-lg shadow-md bg-eb_gray-200 p-8">
+            <div className="flex h-full flex-col rounded-lg shadow-md bg-eb_gray-200 p-4 xl:p-8">
               <h2 className="text-eb_green text-center text-3xl title-font font-medium mb-8">Usuários por curso</h2>
               <input type="hidden" value={JSON.stringify(transparencia.usuarios_por_curso)} id="data-donut-chart"/>
               <div className="w-full h-full" id="donut-chart" style={{ minHeight: "400px"}}></div>
@@ -140,14 +140,14 @@ export const Transparencia = () => {
           </div>
 
           <div className="p-4 h-full w-full lg:w-1/2">
-            <div className="flex h-full flex-col rounded-lg shadow-md bg-eb_gray-200 p-8">
+            <div className="flex h-full flex-col rounded-lg shadow-md bg-eb_gray-200 p-4 xl:p-8">
               <h2 className="text-eb_green text-center text-3xl title-font font-medium mb-8">Usuários por estado</h2>
               <input type="hidden" value={JSON.stringify(transparencia.usuarios_por_estado)} id="data-map-chart"/>
               <div className="w-full h-full" id="map-chart" style={{ height: "400px"}}></div>
               <div className="flex flex-col items-start justify-center text-center">
                 {rangeDataMap.map(data => (
-                  <span key={Math.random()} className="text-sm font-semibold text-gray-600 flex items-center justify-start gap-2">
-                    <span className="block rounded-full h-3 w-3" style={{border: "1px solid #9a9a9a", backgroundColor: data.color}}></span> {data.label}
+                  <span key={Math.random()} className="text-sm font-semibold flex items-center justify-center text-gray-600 gap-2">
+                    <span className="block rounded-full h-3 w-3 mr-1" style={{border: "1px solid #9a9a9a", backgroundColor: data.color}}></span> {data.label}
                   </span>
                 ))}
               </div>

@@ -5,7 +5,10 @@ import { useEffect, useState } from "react";
 import { Parceiro } from "../types/parceiro";
 import { Curso } from "../types/curso";
 import { getCurses, getPartners } from "../services/api";
-import { sanitarizeString } from "../utils/helpers";
+import { sanitarizeString, filterModulesByTerm } from "../utils/helpers";
+import { CurseCard } from "../components/CurseCard";
+import { PartnerCard } from "../components/PartnerCard";
+import { DataNotFound } from "../components/DataNotFound";
 
 export const Search = () => {
 
@@ -24,24 +27,17 @@ export const Search = () => {
   }
 
   function filterAllModules(modules : Curso[]){
-    setAllModules(modules.filter(mod => {
-      return (
-        sanitarizeString(mod.cateroria).toLowerCase().includes(sanitarizeString(term)) ||
-        sanitarizeString(mod.capa).toLowerCase().includes(sanitarizeString(term)) ||
-        sanitarizeString(mod.titulo).toLowerCase().includes(sanitarizeString(term)) ||
-        sanitarizeString(mod.resumo).toLowerCase().includes(sanitarizeString(term)) ||
-        sanitarizeString(mod.sobre).toLowerCase().includes(sanitarizeString(term)) ||
-        sanitarizeString(mod.objetivo_geral).toLowerCase().includes(sanitarizeString(term)) ||
-        sanitarizeString(mod.objetivo_especifico).toLowerCase().includes(sanitarizeString(term))
-      )
-    }));
+    setAllModules(filterModulesByTerm(term, modules));
   }
+
   useEffect(() => {
     const fetchAllPartners = async () => filterAllPartners(await getPartners(`/parceiros`));
     const fetchAllModules = async () => filterAllModules(await getCurses(`/cursos`));
 
     fetchAllPartners();
     fetchAllModules();
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentTab]);
 
   return <main className="pt-24">
@@ -53,29 +49,41 @@ export const Search = () => {
     </div>
       <div className="container px-2 md:px-5 pb-10 mx-auto">
         <div className="flex flex-col text-center w-full md:mb-10">
-          <h1 className="xl:text-3xl text-2xl font-semibold text-center title-font mb-4 text-eb_green">Busca - "{term}"</h1>
+          <h1 className="xl:text-3xl text-2xl font-semibold text-center title-font mb-4 text-eb_green">Resultados de busca para o termo "{term}"</h1>
         </div>
         <div className="container px-5 mx-auto flex flex-wrap flex-col">
-          <div className="flex flex-wrap mb-20">
-            <button onClick={() => setCurrentTab("modulos")} className={`sm:px-6 py-3 w-1/2 sm:w-auto justify-center sm:justify-start border-b-2 title-font font-medium inline-flex items-center leading-none hover:text-eb_pink ${currentTab == "modulos" ? "border-eb_pink text-eb_pink" : ""} tracking-wider rounded-t`}>
-              Módulos disponíveis
+          <div className="flex flex-wrap mb-5">
+            <button onClick={() => setCurrentTab("modulos")} className={`sm:px-6 py-3 w-1/2 sm:w-auto justify-center sm:justify-start border-b-2 title-font font-medium inline-flex items-center leading-none hover:text-eb_pink ${currentTab === "modulos" ? "border-eb_pink text-eb_pink" : ""} tracking-wider rounded-t`}>
+              Módulos ({allModules.length})
             </button>
-            <button onClick={() => setCurrentTab("parceiros")} className={`sm:px-6 py-3 w-1/2 sm:w-auto justify-center sm:justify-start border-b-2 title-font font-medium inline-flex items-center leading-none hover:text-eb_pink ${currentTab == "parceiros" ? "border-eb_pink text-eb_pink" : ""} tracking-wider`}>
-              Parceiros
+            <button onClick={() => setCurrentTab("parceiros")} className={`sm:px-6 py-3 w-1/2 sm:w-auto justify-center sm:justify-start border-b-2 title-font font-medium inline-flex items-center leading-none hover:text-eb_pink ${currentTab === "parceiros" ? "border-eb_pink text-eb_pink" : ""} tracking-wider`}>
+              Parceiros ({allPartners.length})
             </button>
           </div>
          
          <div>
             {currentTab === "modulos" && 
-              <div className="flex flex-wrap -m-4">
-                <p className="italic font-medium text-sm text-left title-font mb-6 text-gray-600">{allModules.length} módulos encontrados</p>
-              </div>
+              <>
+                {allModules.length > 0 ?
+                  <div className="flex flex-wrap -m-4">
+                    {allModules.map((curse:Curso) => (
+                      <CurseCard curse={curse}/>
+                    ))}
+                  </div> 
+                : <DataNotFound />}
+              </>
             }
 
             {currentTab === "parceiros" && 
-              <div className="flex flex-wrap -m-4">
-                <p className="italic font-medium text-sm text-left title-font mb-6 text-gray-600">{allPartners.length} parceiros encontrados</p>
-              </div>
+              <>
+                {allPartners.length > 0 ?
+                  <div className="flex flex-wrap -m-4">
+                    {allPartners.map((partner:Parceiro) => (
+                      <PartnerCard partner={partner}/>
+                    ))}
+                  </div>
+                : <DataNotFound />}
+              </>
             }
          </div>
         </div>

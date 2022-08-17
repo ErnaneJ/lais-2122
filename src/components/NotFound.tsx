@@ -1,4 +1,4 @@
-import bannerVector from "../assets/images/banner_vector.svg";
+import pageNotFound from "../assets/images/page_not_found.svg";
 import { useNavigate } from "react-router-dom";
 
 export const NotFound = () => {
@@ -7,7 +7,7 @@ export const NotFound = () => {
   return (
     <section className="text-gray-600 body-font">
       <div className="container mx-auto flex px-5 items-center justify-center flex-col">
-        <img className="lg:w-2/6 md:w-3/6 w-5/6 mb-10 object-cover object-center rounded" alt="hero" src={bannerVector}/>
+        <img className="lg:w-2/6 md:w-3/6 w-5/6 mb-10 object-cover object-center rounded" alt="pagina nao encontrada" src={pageNotFound}/>
         <div className="text-center lg:w-2/3 w-full">
           <h1 className="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">Ops..! Não encontramos nada.</h1>
           <p className="mb-8 leading-relaxed">Não fique perdido por ai, volte para a página anterior, ou para o início, e vamos recomeçar.</p>

@@ -1,3 +1,5 @@
+import { Curso } from "../types/curso";
+
 export const translateCrumb = (crumb: string):string => {
   return {
     'parceiros': 'Parceiros',
@@ -27,4 +29,18 @@ export const applyDonutChart = (container:string) => {
 export const sanitarizeString = (string: string): string => {
   if(!string) return '';
   return string.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+}
+
+export const filterModulesByTerm = (term:string, curses:Curso[]):Curso[] => {
+  return curses.filter(curse => {
+    return (
+      sanitarizeString(curse.cateroria).toLowerCase().includes(sanitarizeString(term)) ||
+      sanitarizeString(curse.capa).toLowerCase().includes(sanitarizeString(term)) ||
+      sanitarizeString(curse.titulo).toLowerCase().includes(sanitarizeString(term)) ||
+      sanitarizeString(curse.resumo).toLowerCase().includes(sanitarizeString(term)) ||
+      sanitarizeString(curse.sobre).toLowerCase().includes(sanitarizeString(term)) ||
+      sanitarizeString(curse.objetivo_geral).toLowerCase().includes(sanitarizeString(term)) ||
+      sanitarizeString(curse.objetivo_especifico).toLowerCase().includes(sanitarizeString(term))
+    )
+  })
 }
