@@ -36,15 +36,6 @@ export const Banner = () => {
     }
   };
 
-  // pass automatically 
-  // useEffect(
-  //   () => {
-  //       const id = setInterval(nextSection, 5000);
-  //       return () => clearInterval(id);
-  //   },
-  //   [currentSection]
-  // );
-
   return <section className="text-gray-600 body-font bg-eb_gray-100 pt-24 w-full h-full">
     <div className="container mx-auto flex px-5 py-12 items-center justify-center flex-col">
       <div className="w-full flex flex-row items-center justify-center">

@@ -6,10 +6,11 @@ export const Header = () => {
   const location = useLocation();
 
   const [showHeader, setShowHeader] = useState(false);
+  const [searchInput, setSearchInput] = useState("");
 
   const links = [
     {name: "Inicio", path: "/", status: location.pathname === "/"},
-    {name: "Sobre Nós", path: "#sobre_nos", status: location.pathname.includes("#sobre_nos")},
+    {name: "Sobre Nós", path: "/#sobre_nos", status: location.pathname.includes("/#sobre_nos")},
     {name: "Cursos", path: "/cursos/modulos", status: location.pathname.includes("/curso")},
     {name: "Parceiros", path: "/parceiros", status: location.pathname.includes("/parceiros")},
     {name: "Transparência", path: "/transparencia", status: location.pathname.includes("/transparencia")},
@@ -36,7 +37,7 @@ export const Header = () => {
           </button>
         </div>
         
-        <nav className="xl:ml-auto flex flex-wrap xl:flex-nowrap items-center text-base justify-center mt-3 mb-5 xl:mb-0">
+        <nav className="xl:ml-auto flex flex-wrap xl:flex-nowrap items-center text-base justify-center mb-5 xl:mb-0">
           {links.map((link, index) => (
             <a key={index} href={link.path} className={`min-w-max mr-5 font-semibold ${link.status ? "text-eb_pink hover:text-eb_gray-500" : "text-eb_gray-500 hover:text-eb_pink"} transition ease-in-out duration-300`}>{link.name}</a>
           ))}
@@ -50,8 +51,11 @@ export const Header = () => {
                 <path fillRule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clipRule="evenodd"></path>
               </svg>
             </div>
-            <input onKeyUp={handdleInputSearch} type="text" id="search" className="bg-eb_pink/10 outline-none text-eb_gray-500 text-sm rounded-full focus:ring-eb_pink focus:border-eb_pink block w-full pl-10 p-1.5" required/>
+            <input value={searchInput} onChange={(event) => setSearchInput(event.target.value)} onKeyUp={handdleInputSearch} placeholder="Buscar.." type="text" id="search" className="bg-eb_pink/10 outline-none text-eb_gray-500 text-sm rounded-full focus:ring-eb_pink focus:border-eb_pink block w-full pl-10 p-1.5" required/>
           </div>
+          <button className={`flex items-center justify-center gap-2 transition ease-in-out duration-300 inline-flex items-center font-semibold bg-white text-eb_pink border-[1px] focus:outline-none hover:text-white hover:bg-eb_pink rounded-full text-base ${searchInput !== "" ? 'py-1 px-6 ml-5 mr-2 border-eb_pink' : 'w-0 p-0 mr-0 ml-0 border-transparent'} overflow-hidden`}>
+            Buscar
+          </button>
         </div>
 
         <div className="flex items-center flex-col md:flex-row gap-2">

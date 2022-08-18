@@ -8,7 +8,9 @@ export const CurseCard = ({ curse }:CurseProps) => {
   return (
     <div className="p-4 w-full md:w-1/3" key={curse.id}>
       <div className="h-full w-full rounded-2xl">
-      <img className="lg:h-48 md:h-36 w-full object-cover object-center rounded-2xl" src={curse.capa} alt={`Imagem de capa do curso ${curse.titulo}`}/>
+      <a href={`/cursos/modulo/${curse.titulo}`} >
+        <img className="lg:h-48 md:h-36 w-full object-cover object-center rounded-2xl" src={curse.capa} alt={`Imagem de capa do curso ${curse.titulo}`}/>
+      </a>
       <div className="py-6">
         <h1 className="title-font text-lg xl:text-2xl font-semibold text-gray-900 mb-3">{curse.titulo}</h1>
         <h2 className="tracking-widest text-xs title-font font-semibold text-eb_green mb-2">{curse.parceiros}</h2>

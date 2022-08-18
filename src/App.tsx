@@ -5,10 +5,10 @@ import { Main } from './Main';
 
 export default function App() {
   return (
-    <>  
+    <React.StrictMode>  
       <Header />
         <Main /> 
       <Footer />
-    </>
+    </React.StrictMode>
   )
 }
