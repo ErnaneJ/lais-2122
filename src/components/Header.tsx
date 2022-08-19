@@ -1,9 +1,10 @@
 import { useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import headerLogo from '../assets/images/header_logo.svg';
 
 export const Header = () => {
   const location = useLocation();
+  const navigate = useNavigate();
 
   const [showHeader, setShowHeader] = useState(false);
   const [searchInput, setSearchInput] = useState("");
@@ -17,10 +18,15 @@ export const Header = () => {
     {name: "Contato", path: "/contato", status: location.pathname.includes("/contato")},
   ];
 
+  function buscar(){
+    navigate(`/buscar/${searchInput}`);
+    window.location.reload();
+  }
+
   function handdleInputSearch(event:any){
     event.preventDefault();
     if(event.code === "Enter"){
-      window.location.href = `/buscar/${event.target.value}`;
+      buscar()
     }
   }
   
@@ -53,7 +59,7 @@ export const Header = () => {
             </div>
             <input value={searchInput} onChange={(event) => setSearchInput(event.target.value)} onKeyUp={handdleInputSearch} placeholder="Buscar.." type="text" id="search" className="bg-eb_pink/10 outline-none text-eb_gray-500 text-sm rounded-full focus:ring-eb_pink focus:border-eb_pink block w-full pl-10 p-1.5" required/>
           </div>
-          <button className={`flex items-center justify-center gap-2 transition ease-in-out duration-300 inline-flex items-center font-semibold bg-white text-eb_pink border-[1px] focus:outline-none hover:text-white hover:bg-eb_pink rounded-full text-base ${searchInput !== "" ? 'py-1 px-6 ml-5 mr-2 border-eb_pink' : 'w-0 p-0 mr-0 ml-0 border-transparent'} overflow-hidden`}>
+          <button onClick={buscar} className={`flex items-center justify-center gap-2 transition ease-in-out duration-300 inline-flex items-center font-semibold bg-white text-eb_pink border-[1px] focus:outline-none hover:text-white hover:bg-eb_pink rounded-full text-base ${searchInput !== "" ? 'py-1 px-6 ml-5 mr-2 border-eb_pink' : 'w-0 p-0 mr-0 ml-0 border-transparent'} overflow-hidden`}>
             Buscar
           </button>
         </div>

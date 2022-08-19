@@ -15,7 +15,6 @@ export const CursoInfo = () => {
       const [curse] = await getCurses(`/cursos?titulo=${titleCurseQuery}`);
       setCurrentCurse(curse);
       setBannerImage(curse.capa);
-      console.log(curse);
     };
    
     fetchModuleByTitle();

@@ -38,7 +38,7 @@ export const Search = () => {
     fetchAllModules();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentTab]);
+  }, [currentTab, term]);
 
   return <main className="pt-24">
     <Helmet>
